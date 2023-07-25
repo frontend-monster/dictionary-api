@@ -143,9 +143,16 @@ function App() {
         >
           <label className="relative block">
             <span className="sr-only">Search keyword</span>
-            <span
+            <motion.span
               className="absolute inset-y-0 right-0 flex items-center pr-4 cursor-pointer"
               onClick={handleSubmit}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.8 }}
+              transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 17,
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +168,7 @@ function App() {
                   d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
                 />
               </svg>
-            </span>
+            </motion.span>
             <input
               className="placeholder:text-slate-500 block bg-slate-100 w-full border-none rounded-xl py-4 shadow-md focus:outline-none focus:border-violet-500 focus:ring-violet-500 focus:ring-1 sm:text-sm font-bold text-black placeholder:font-normal transition-all duration-150 dark:bg-slate-700 dark:focus:border-indigo-500 dark:focus:ring-indigo-500 dark:focus:ring-1 dark:text-white dark:placeholder-white"
               placeholder="Search for word..."
@@ -291,40 +298,42 @@ function App() {
                         {d.phonetic}
                       </span>
                     </div>
-                    {d.phonetics.map((item, index) => {
-                      console.log(item.audio);
-                      if (item.audio !== "") {
-                        return (
-                          <motion.span
-                            className="bg-violet-100 w-14 h-14 xs:w-20 xs:h-20 grid place-items-center rounded-full cursor-pointer"
-                            key={index}
-                            whileHover={{ scale: 1.2 }}
-                            whileTap={{ scale: 0.8 }}
-                            onClick={() => playAudio(item.audio)}
-                            transition={{
-                              type: "spring",
-                              stiffness: 400,
-                              damping: 17,
-                            }}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="#581c87"
-                              viewBox="0 0 24 24"
-                              strokeWidth={0}
-                              stroke="currentColor"
-                              className="w-7 h-7 #581c87 stroke-0"
+                    <div className="flex gap-3">
+                      {d.phonetics.map((item, index) => {
+                        console.log(item.audio);
+                        if (item.audio !== "") {
+                          return (
+                            <motion.span
+                              className="bg-violet-100 w-14 h-14 xs:w-20 xs:h-20 grid place-items-center rounded-full cursor-pointer"
+                              key={index}
+                              whileHover={{ scale: 1.2 }}
+                              whileTap={{ scale: 0.8 }}
+                              onClick={() => playAudio(item.audio)}
+                              transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 17,
+                              }}
                             >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
-                              />
-                            </svg>
-                          </motion.span>
-                        );
-                      }
-                    })}
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="#581c87"
+                                viewBox="0 0 24 24"
+                                strokeWidth={0}
+                                stroke="currentColor"
+                                className="w-7 h-7 #581c87 stroke-0"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
+                                />
+                              </svg>
+                            </motion.span>
+                          );
+                        }
+                      })}
+                    </div>
                   </div>
                   {/* VERB, NOUN */}
                   <div className="mt-8">
@@ -355,12 +364,14 @@ function App() {
                             </ul>
                           </div>
                           {item.synonyms.length !== 0 && (
-                            <div className="mt-8 flex gap-6">
+                            <div className="mt-8 flex gap-4">
                               <h4 className="text-base text-slate-600 mb-4 dark:text-gray-100">
                                 Synonyms
                               </h4>
                               <span className="text-violet-800 lowercase dark:text-violet-200">
-                                {item.synonyms}
+                                {item.synonyms.map((i, index) => {
+                                  return <span key={index}>{i} </span>;
+                                })}
                               </span>
                             </div>
                           )}
