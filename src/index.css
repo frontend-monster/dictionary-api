@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  overscroll-behavior: none;
+}
+
+html {
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+html.dark {
+  background-color: #0f172a;
+}
