@@ -105,7 +105,7 @@ function App() {
       <main className="relative">
         <nav className="max-w-3xl mx-auto flex justify-between py-6 items-center font-normal px-3 lg:px-0">
           <a
-            href="/"
+            href="/dictionary-api/"
             className="inline-block text-slate-600 dark:text-white"
           >
             <svg
@@ -169,7 +169,7 @@ function App() {
               name="keyword"
               value={keyword}
               onChange={(e) => {
-                setKeyword(e.target.value)
+                setKeyword(e.target.value);
               }}
               autoComplete="off"
             />
