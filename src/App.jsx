@@ -300,36 +300,40 @@ function App() {
                     </div>
                     <div className="flex gap-3">
                       {d.phonetics.map((item, index) => {
-                        console.log(item.audio);
                         if (item.audio !== "") {
                           return (
-                            <motion.span
-                              className="bg-violet-100 w-14 h-14 xs:w-20 xs:h-20 grid place-items-center rounded-full cursor-pointer"
-                              key={index}
-                              whileHover={{ scale: 1.2 }}
-                              whileTap={{ scale: 0.8 }}
-                              onClick={() => playAudio(item.audio)}
-                              transition={{
-                                type: "spring",
-                                stiffness: 400,
-                                damping: 17,
-                              }}
-                            >
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="#581c87"
-                                viewBox="0 0 24 24"
-                                strokeWidth={0}
-                                stroke="currentColor"
-                                className="w-7 h-7 #581c87 stroke-0"
+                            <div className="flex flex-col gap-2">
+                              <motion.span
+                                className="bg-violet-100 w-14 h-14 xs:w-20 xs:h-20 grid place-items-center rounded-full cursor-pointer"
+                                key={index}
+                                whileHover={{ scale: 1.2 }}
+                                whileTap={{ scale: 0.8 }}
+                                onClick={() => playAudio(item.audio)}
+                                transition={{
+                                  type: "spring",
+                                  stiffness: 400,
+                                  damping: 17,
+                                }}
                               >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
-                                />
-                              </svg>
-                            </motion.span>
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="#581c87"
+                                  viewBox="0 0 24 24"
+                                  strokeWidth={0}
+                                  stroke="currentColor"
+                                  className="w-7 h-7 #581c87 stroke-0"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
+                                  />
+                                </svg>
+                              </motion.span>
+                              {item.text && (
+                                <p className="text-slate-600 text-xs text-center dark:text-violet-300">{item.text}</p>
+                              )}
+                            </div>
                           );
                         }
                       })}
