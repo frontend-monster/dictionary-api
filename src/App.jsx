@@ -295,9 +295,17 @@ function App() {
                       console.log(item.audio);
                       if (item.audio !== "") {
                         return (
-                          <span
-                            className="bg-violet-100 w-14 h-14 xs:w-20 xs:h-20 grid place-items-center rounded-full"
+                          <motion.span
+                            className="bg-violet-100 w-14 h-14 xs:w-20 xs:h-20 grid place-items-center rounded-full cursor-pointer"
                             key={index}
+                            whileHover={{ scale: 1.2 }}
+                            whileTap={{ scale: 0.8 }}
+                            onClick={() => playAudio(item.audio)}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 17,
+                            }}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -305,8 +313,7 @@ function App() {
                               viewBox="0 0 24 24"
                               strokeWidth={0}
                               stroke="currentColor"
-                              className="w-7 h-7 #581c87 stroke-0 cursor-pointer"
-                              onClick={() => playAudio(item.audio)}
+                              className="w-7 h-7 #581c87 stroke-0"
                             >
                               <path
                                 strokeLinecap="round"
@@ -314,7 +321,7 @@ function App() {
                                 d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
                               />
                             </svg>
-                          </span>
+                          </motion.span>
                         );
                       }
                     })}
